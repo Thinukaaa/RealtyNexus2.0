@@ -153,6 +153,31 @@ venv.bak/
 
 # mkdocs documentation
 /site
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Local DBs / data
+db/*.db
+db/*.sqlite
+*.sqlite3
+
+# Node/yarn caches if any
+node_modules/
+
+# Logs
+*.log
+logs/
+
+# Environment / secrets
+.env
+.env.*
+*.local
+
+# OS/editor
+.DS_Store
+Thumbs.db
 
 # mypy
 .mypy_cache/

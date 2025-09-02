@@ -1,0 +1,582 @@
+{
+  "meta": {
+    "project": "RealtyNexus2.0",
+    "startedAt": "2025-08-29T19:19:36.719Z",
+    "runs": 30,
+    "endpoint": "http://localhost:3000/api/chat",
+    "method": "POST",
+    "concurrency": 4
+  },
+  "results": [
+    {
+      "request": "can you speak sri lankan english? something more casual pls",
+      "request_iso": "2025-08-29T19:19:36.719Z",
+      "status": 0,
+      "latency_ms": 28,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "ok, send me the top 3 only with photos",
+      "request_iso": "2025-08-29T19:19:36.738Z",
+      "status": 0,
+      "latency_ms": 34,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "ok, send me the top 3 only with photos thanks!",
+      "request_iso": "2025-08-29T19:19:36.740Z",
+      "status": 0,
+      "latency_ms": 34,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "lowest price listing you have?",
+      "request_iso": "2025-08-29T19:19:36.740Z",
+      "status": 0,
+      "latency_ms": 35,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "show me apartments in galle under 40 million",
+      "request_iso": "2025-08-29T19:19:39.543Z",
+      "status": 0,
+      "latency_ms": 6,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "can you speak sri lankan english? somethiyang more casual pls",
+      "request_iso": "2025-08-29T19:19:39.545Z",
+      "status": 0,
+      "latency_ms": 5,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "what’s the most expensive property rn?",
+      "request_iso": "2025-08-29T19:19:39.545Z",
+      "status": 0,
+      "latency_ms": 6,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "hello! can you assist me with finding a place?",
+      "request_iso": "2025-08-29T19:19:39.546Z",
+      "status": 0,
+      "latency_ms": 5,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "do you have anythiyang beachfront in unawatuna?",
+      "request_iso": "2025-08-29T19:19:40.504Z",
+      "status": 0,
+      "latency_ms": 3,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "tell me a quick tip for first-time buyers?",
+      "request_iso": "2025-08-29T19:19:40.504Z",
+      "status": 0,
+      "latency_ms": 3,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "tell me a quick tip for first-time buyers?",
+      "request_iso": "2025-08-29T19:19:40.504Z",
+      "status": 0,
+      "latency_ms": 5,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "lowest price listing you have?",
+      "request_iso": "2025-08-29T19:19:40.505Z",
+      "status": 0,
+      "latency_ms": 5,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "give me your office hours and phone number",
+      "request_iso": "2025-08-29T19:19:42.435Z",
+      "status": 0,
+      "latency_ms": 4,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "mm can you sort by newest listed?",
+      "request_iso": "2025-08-29T19:19:42.435Z",
+      "status": 0,
+      "latency_ms": 5,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "hey there 👋 what can you help me with?",
+      "request_iso": "2025-08-29T19:19:42.436Z",
+      "status": 0,
+      "latency_ms": 5,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "show me rentals, not sales",
+      "request_iso": "2025-08-29T19:19:42.436Z",
+      "status": 0,
+      "latency_ms": 6,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "give me your office hours and phone number",
+      "request_iso": "2025-08-29T19:19:43.664Z",
+      "status": 0,
+      "latency_ms": 5,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "oops typo: apaprtment in galee (i meant apartment in galle) thanks!",
+      "request_iso": "2025-08-29T19:19:43.665Z",
+      "status": 0,
+      "latency_ms": 6,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "do you have anything beachfront in unawatuna?",
+      "request_iso": "2025-08-29T19:19:43.665Z",
+      "status": 0,
+      "latency_ms": 8,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "mm can you sort by newest listed?",
+      "request_iso": "2025-08-29T19:19:43.666Z",
+      "status": 0,
+      "latency_ms": 8,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "hello! can you assist me with finding a place?",
+      "request_iso": "2025-08-29T19:19:44.534Z",
+      "status": 0,
+      "latency_ms": 3,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "please mm can you sort by newest listed?",
+      "request_iso": "2025-08-29T19:19:44.534Z",
+      "status": 0,
+      "latency_ms": 5,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "hi, who are you?",
+      "request_iso": "2025-08-29T19:19:44.535Z",
+      "status": 0,
+      "latency_ms": 4,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "do you have anything beachfront in unawatuna?",
+      "request_iso": "2025-08-29T19:19:44.535Z",
+      "status": 0,
+      "latency_ms": 6,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "do you have anything beachfront in unawatuna?",
+      "request_iso": "2025-08-29T19:19:45.494Z",
+      "status": 0,
+      "latency_ms": 4,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "tell me a quick tip for first-time buyers?",
+      "request_iso": "2025-08-29T19:19:45.495Z",
+      "status": 0,
+      "latency_ms": 4,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "what’s the most expensive property rn?",
+      "request_iso": "2025-08-29T19:19:45.495Z",
+      "status": 0,
+      "latency_ms": 5,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "ok, send me the top 3 only with photos",
+      "request_iso": "2025-08-29T19:19:45.496Z",
+      "status": 0,
+      "latency_ms": 4,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "please can i talk to an agent about a 3br in galle?",
+      "request_iso": "2025-08-29T19:19:46.441Z",
+      "status": 0,
+      "latency_ms": 2,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    },
+    {
+      "request": "looking for a 3 bedroom house near karapitiya with parking",
+      "request_iso": "2025-08-29T19:19:46.441Z",
+      "status": 0,
+      "latency_ms": 3,
+      "bot_reply": "AggregateError",
+      "analysis": {
+        "greeting_present": false,
+        "punctuation_variety": 0,
+        "contractions_count": 0,
+        "has_line_breaks": false,
+        "flesch_reading_ease": -217.2,
+        "avg_sentence_length_words": 1
+      },
+      "suggestions": {
+        "rule_based": "Hi! AggregateError.",
+        "llm_polished": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+request_iso,status,latency_ms,request,bot_reply,greeting_present,punctuation_variety,contractions_count,has_line_breaks,flesch_reading_ease,avg_sentence_length_words
+2025-08-29T19:19:36.719Z,0,28,"can you speak sri lankan english? something more casual pls","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:36.738Z,0,34,"ok, send me the top 3 only with photos","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:36.740Z,0,34,"ok, send me the top 3 only with photos thanks!","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:36.740Z,0,35,"lowest price listing you have?","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:39.543Z,0,6,"show me apartments in galle under 40 million","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:39.545Z,0,5,"can you speak sri lankan english? somethiyang more casual pls","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:39.545Z,0,6,"what’s the most expensive property rn?","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:39.546Z,0,5,"hello! can you assist me with finding a place?","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:40.504Z,0,3,"do you have anythiyang beachfront in unawatuna?","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:40.504Z,0,3,"tell me a quick tip for first-time buyers?","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:40.504Z,0,5,"tell me a quick tip for first-time buyers?","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:40.505Z,0,5,"lowest price listing you have?","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:42.435Z,0,4,"give me your office hours and phone number","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:42.435Z,0,5,"mm can you sort by newest listed?","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:42.436Z,0,5,"hey there 👋 what can you help me with?","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:42.436Z,0,6,"show me rentals, not sales","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:43.664Z,0,5,"give me your office hours and phone number","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:43.665Z,0,6,"oops typo: apaprtment in galee (i meant apartment in galle) thanks!","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:43.665Z,0,8,"do you have anything beachfront in unawatuna?","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:43.666Z,0,8,"mm can you sort by newest listed?","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:44.534Z,0,3,"hello! can you assist me with finding a place?","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:44.534Z,0,5,"please mm can you sort by newest listed?","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:44.535Z,0,4,"hi, who are you?","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:44.535Z,0,6,"do you have anything beachfront in unawatuna?","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:45.494Z,0,4,"do you have anything beachfront in unawatuna?","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:45.495Z,0,4,"tell me a quick tip for first-time buyers?","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:45.495Z,0,5,"what’s the most expensive property rn?","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:45.496Z,0,4,"ok, send me the top 3 only with photos","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:46.441Z,0,2,"please can i talk to an agent about a 3br in galle?","AggregateError",false,0,0,false,-217.2,1
+2025-08-29T19:19:46.441Z,0,3,"looking for a 3 bedroom house near karapitiya with parking","AggregateError",false,0,0,false,-217.2,1
