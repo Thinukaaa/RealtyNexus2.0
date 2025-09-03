@@ -4,255 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RealtyNexus 2.0</title>
-
-  <!-- Prevent favicon 404 -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a2540'/%3E%3Cpath d='M20 62 L50 32 L80 62' fill='none' stroke='%23fff' stroke-width='10' stroke-linecap='round'/%3E%3C/svg%3E">
-
-  <style>
-    :root{
-      --bg: #081a2b;           /* page background */
-      --panel: #0c2240;        /* cards/panels */
-      --panel-2: #0e2a51;
-      --text: #eaf2ff;
-      --muted: #a8bddb;
-      --accent-a: #2aa8ff;     /* gradient start */
-      --accent-b: #00e0ff;     /* gradient end */
-      --accent-2: #ffd166;
-      --ring: rgba(0, 224, 255, .35);
-      --radius: 16px;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-    }
-
-    /* Global reset & base */
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body{
-      margin:0;
-      color:var(--text);
-      font: 500 16px/1.55 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial;
-      background:
-        radial-gradient(1200px 600px at 10% -10%, #12345a 0%, transparent 60%),
-        radial-gradient(1000px 700px at 110% 20%, #0b2a4d 0%, transparent 55%),
-        var(--bg);
-      overflow-x: hidden;
-    }
-
-    a { color: var(--text); text-decoration: none; }
-    .container{
-      width: min(1200px, 92vw);
-      margin-inline: auto;
-    }
-
-    /* Sticky top nav */
-    .topbar{
-      position: sticky; top: 0; z-index: 50;
-      backdrop-filter: blur(8px);
-      background: linear-gradient(180deg, rgba(8,26,43,.85), rgba(8,26,43,.3) 70%, transparent);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      padding: 14px 0;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.3px;
-    }
-    .brand .dot{
-      width:12px; height:12px; border-radius:99px;
-      background: linear-gradient(135deg, var(--accent-a), var(--accent-b));
-      box-shadow: 0 0 14px rgba(0,224,255,.6);
-    }
-    .links{ display:flex; gap:22px; }
-    .links a{ opacity:.9 }
-    .links a:hover{ opacity:1; text-decoration:underline; text-underline-offset:6px }
-
-    /* Hero */
-    .hero{
-      padding: 44px 0 22px;
-    }
-    .headline{
-      font-weight:800; letter-spacing:.1px;
-      font-size: clamp(28px, 4vw, 40px);
-      line-height: 1.2;
-      max-width: 900px;
-      margin: 2px 0 14px;
-    }
-    .sub{
-      color: var(--muted);
-      max-width: 900px;
-      margin-bottom: 26px;
-    }
-    .pill{
-      display:inline-flex; align-items:center; gap:10px;
-      padding: 10px 18px; border-radius: 999px;
-      background: linear-gradient(90deg,var(--accent-a),var(--accent-b));
-      color:#001726; font-weight:800; letter-spacing:.2px;
-      box-shadow: 0 10px 24px rgba(0,224,255,.25);
-      transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
-      border: 0;
-      cursor: pointer;
-    }
-    .pill:hover{ transform: translateY(-2px); box-shadow: 0 16px 34px rgba(0,224,255,.35) }
-    .pill:active{ transform: translateY(0) scale(.98) }
-
-    /* 3-col feature grid */
-    .sections{
-      display:grid; gap: 28px;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      margin: 26px 0 10px;
-    }
-    @media (max-width: 980px){ .sections{ grid-template-columns: 1fr } }
-
-    .section{
-      padding: 22px; border-radius: var(--radius);
-      background: linear-gradient(180deg, var(--panel), var(--panel-2));
-      border: 1px solid rgba(255,255,255,.06);
-      box-shadow: var(--shadow);
-      min-height: 220px;
-    }
-    .section h3{
-      margin:0 0 12px; font-size: 18px; letter-spacing:.3px;
-    }
-    .muted{ color: var(--muted); margin: 8px 0 14px }
-
-    /* Property cards inside sections */
-    .cards{ display: grid; gap: 12px; }
-    .card{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px; padding: 14px 16px; border-radius: 14px;
-      background: rgba(255,255,255,.03);
-      border: 1px solid rgba(255,255,255,.06);
-    }
-    .card h4{ margin:0 0 2px; font-size: 16px }
-    .tag{
-      font-size: 12px; color: #001726; font-weight: 800;
-      background: linear-gradient(90deg,var(--accent-a),var(--accent-b));
-      padding: 6px 10px; border-radius: 999px; white-space: nowrap;
-      box-shadow: 0 6px 16px rgba(0,224,255,.25);
-    }
-    .dim{ color: var(--muted); font-size: 14px }
-
-    /* Contact panel */
-    .contact{
-      margin: 34px 0 90px;
-      padding: 26px;
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, var(--panel-2), var(--panel));
-      border: 1px solid rgba(255,255,255,.08);
-      box-shadow: var(--shadow);
-      display:grid; gap: 22px;
-      grid-template-columns: 1.2fr 2fr;
-    }
-    @media (max-width: 980px){ .contact{ grid-template-columns: 1fr } }
-
-    .contact h3{ margin: 0 0 10px }
-    .contact .details{ color: var(--muted) }
-
-    form{ display:grid; gap: 12px }
-    label{ font-size: 13px; color: var(--muted) }
-    .field{
-      display:flex; align-items:center; gap:10px;
-      background: rgba(255,255,255,.03);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 12px; padding: 12px 14px;
-      outline: none;
-      transition: border-color .2s ease, box-shadow .2s ease;
-    }
-    .field:focus-within{
-      border-color: var(--accent-b);
-      box-shadow: 0 0 0 4px var(--ring);
-    }
-    .field input, .field textarea{
-      background: transparent; border:0; outline:0; color: var(--text);
-      width: 100%; font: inherit;
-      resize: vertical;
-    }
-    .row2{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px }
-    @media (max-width: 620px){ .row2{ grid-template-columns: 1fr } }
-
-    .submit{
-      margin-top: 6px;
-      justify-self: start;
-    }
-
-    /* Toast */
-    .toast{
-      position: fixed; right:20px; bottom: 94px; z-index: 70;
-      background: #0b2c4f; border: 1px solid rgba(255,255,255,.12);
-      color: var(--text); padding: 12px 14px; border-radius: 12px;
-      box-shadow: var(--shadow); opacity:0; transform: translateY(10px);
-      transition: .25s ease; pointer-events:none;
-    }
-    .toast.show{ opacity: 1; transform: translateY(0) }
-
-    /* Floating chat button */
-    .chat-fab{
-      position: fixed; right: 22px; bottom: 22px; z-index: 60;
-      display:flex; align-items:center; gap:10px;
-      border: 0; cursor: pointer; color:#001726; font-weight:800;
-      background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
-      padding: 14px 16px; border-radius: 999px;
-      box-shadow: 0 16px 36px rgba(0,224,255,.35);
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
-    .chat-fab:hover{ transform: translateY(-3px) }
-    .chat-fab .icon{ width:20px; height:20px; background:#001726; color:#00e0ff; border-radius: 6px; display:grid; place-items:center; font-size:12px; }
-
-    /* Chat panel */
-    .chat-panel{
-      position: fixed; right: 22px; bottom: 86px; width: min(380px, 92vw);
-      background: #0c2240; border: 1px solid rgba(255,255,255,.1);
-      border-radius: 16px; box-shadow: var(--shadow);
-      overflow: hidden; transform: translateY(20px); opacity:0;
-      pointer-events: none; transition: .25s ease; z-index: 65;
-    }
-    .chat-panel.open{ transform: translateY(0); opacity:1; pointer-events: auto; }
-    .chat-head{
-      display:flex; align-items:center; justify-content:space-between;
-      padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,.08);
-      background: linear-gradient(180deg, #0f2b52, #0c2240);
-    }
-    .chat-head strong{ letter-spacing:.2px }
-    .chat-body{
-      display:flex; flex-direction: column; gap:12px; padding: 14px; max-height: 48vh; overflow:auto;
-    }
-    .bubble{
-      max-width: 85%; padding:10px 12px; border-radius: 14px; font-size: 14px;
-      border: 1px solid rgba(255,255,255,.08);
-    }
-    .ai{ align-self:flex-start; background: rgba(255,255,255,.04) }
-    .me{ align-self:flex-end; background: linear-gradient(90deg,var(--accent-a),var(--accent-b)); color:#001726; font-weight:800 }
-    .chat-input{
-      display:flex; gap:10px; padding: 12px; border-top: 1px solid rgba(255,255,255,.08);
-      background: #0b1f3b;
-    }
-    .chat-input input{
-      flex:1; border-radius: 12px; border:1px solid rgba(255,255,255,.1);
-      background: rgba(255,255,255,.03); color: var(--text);
-      padding: 12px 12px; outline: none;
-    }
-    .chat-input button{
-      border: 0; border-radius: 12px; padding: 12px 14px; cursor: pointer;
-      background: linear-gradient(90deg,var(--accent-a),var(--accent-b));
-      color:#001726; font-weight:800;
-    }
-
-    footer{
-      color: var(--muted);
-      border-top: 1px solid rgba(255,255,255,.06);
-      padding: 22px 0 40px; margin-top: 20px;
-      text-align: center;
-    }
-  </style>
+  <link rel="stylesheet" href="/static/app.css?v=2025-09-03-4" />
 </head>
 <body>
-  <header class="topbar">
-    <div class="container nav">
-      <div class="brand">
-        <span class="dot"></span>
+  <header class="rn-topbar">
+    <div class="rn-container rn-nav">
+      <div class="rn-brand">
+        <span class="rn-dot"></span>
         <span>RealtyNexus 2.0</span>
       </div>
-      <nav class="links" aria-label="Primary">
+      <nav class="rn-links" aria-label="Primary">
         <a href="#features">Features</a>
         <a href="#listings">Listings</a>
         <a href="#contact">Contact</a>
@@ -260,215 +22,126 @@
     </div>
   </header>
 
-  <main class="container">
-    <section class="hero" id="features" aria-labelledby="h1">
-      <h1 id="h1" class="headline">Smarter property decisions, faster.</h1>
-      <p class="sub">Local expertise across Greater Colombo, Galle and Kandy — with transparent fees and bank-approved valuations.</p>
-      <button class="pill" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">
-        Book a free valuation
-        <span aria-hidden="true">→</span>
+  <main class="rn-container">
+    <section class="rn-hero" id="features">
+      <h1 class="rn-headline">Smarter property decisions, faster.</h1>
+      <p class="rn-sub">Local expertise across Greater Colombo, Galle, Kandy — transparent fees & bank-approved valuations.</p>
+      <button class="rn-pill" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">
+        Book a free valuation →
       </button>
     </section>
 
-    <section class="sections" id="listings" aria-label="Services and listings">
-      <!-- Residential & Rentals -->
-      <article class="section">
+    <section class="rn-sections" id="listings" aria-label="Services and listings">
+      <article class="rn-section">
         <h3>Residential & Rentals</h3>
-        <p class="muted">End-to-end support from search to keys.</p>
-
-        <div class="cards">
-          <div class="card">
+        <p class="rn-muted">End-to-end support from search to keys.</p>
+        <div class="rn-cards">
+          <div class="rn-card">
             <div>
               <h4>Colombo 5 — 2BR Apartment</h4>
-              <div class="dim">82 m² · High floor · Pool + Gym</div>
+              <div class="rn-dim">82 m² · High floor · Pool + Gym</div>
             </div>
-            <span class="tag">LKR 72M</span>
+            <span class="rn-tag">LKR 72M</span>
           </div>
         </div>
       </article>
-
-      <!-- Investment Advisory -->
-      <article class="section">
+      <article class="rn-section">
         <h3>Investment Advisory</h3>
-        <p class="muted">Off-plan, land banking, and REIT ideas.</p>
-
-        <div class="cards">
-          <div class="card">
+        <p class="rn-muted">Off-plan, land banking, and co-investments.</p>
+        <div class="rn-cards">
+          <div class="rn-card">
             <div>
               <h4>Galle Fort — Townhouse Shell</h4>
-              <div class="dim">Authentic colonial shell · 3BR · POA</div>
+              <div class="rn-dim">Authentic colonial shell · 3BR · POA</div>
             </div>
-            <span class="tag">Featured</span>
+            <span class="rn-tag">Featured</span>
           </div>
         </div>
       </article>
-
-      <!-- Legal & Due Diligence -->
-      <article class="section">
+      <article class="rn-section">
         <h3>Legal & Due Diligence</h3>
-        <p class="muted">Title checks, deed verification, and valuation partners.</p>
-
-        <div class="cards">
-          <div class="card">
+        <p class="rn-muted">Title checks, deed verification & valuation partners.</p>
+        <div class="rn-cards">
+          <div class="rn-card">
             <div>
               <h4>Kandy — View Plot</h4>
-              <div class="dim">12.5 perch · Utilities nearby</div>
+              <div class="rn-dim">12.5 perch · Utilities nearby</div>
             </div>
-            <span class="tag">LKR 8.9M</span>
+            <span class="rn-tag">LKR 8.9M</span>
           </div>
         </div>
       </article>
     </section>
 
-    <!-- Contact -->
-    <section class="contact" id="contact" aria-label="Contact form">
+    <section class="rn-contact" id="contact" aria-label="Contact form">
       <div>
         <h3>Contact</h3>
-        <p class="details">
+        <p class="rn-details">
           Colombo, Sri Lanka<br>
           +94 11 234 5678 · <a href="mailto:hello@realtynexus.com">hello@realtynexus.com</a><br>
           Hours: Mon–Sat 9:00–18:00
         </p>
       </div>
-
       <form id="contactForm" novalidate>
         <div>
           <label for="name">Your name</label>
-          <div class="field">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 12a5 5 0 1 0-4.999-5 5 5 0 0 0 4.999 5Zm0 2c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5Z" stroke="currentColor" opacity=".6"/></svg>
+          <div class="rn-field">
             <input id="name" name="name" autocomplete="name" required placeholder="Jane Perera">
           </div>
         </div>
-
-        <div class="row2">
+        <div class="rn-row2">
           <div>
             <label for="email">Email</label>
-            <div class="field">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 5h18v14H3z" stroke="currentColor" opacity=".6"/><path d="m3 6 9 7 9-7" stroke="currentColor" opacity=".6"/></svg>
+            <div class="rn-field">
               <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
             </div>
           </div>
           <div>
             <label for="phone">Phone (optional)</label>
-            <div class="field">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.4.54 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 7a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .54 3.4 1 1 0 0 1-.24 1Z" stroke="currentColor" opacity=".6"/></svg>
+            <div class="rn-field">
               <input id="phone" name="phone" inputmode="tel" placeholder="+94 7X XXX XXXX">
             </div>
           </div>
         </div>
-
         <div>
           <label for="message">Tell us what you need</label>
-          <div class="field">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h16v12H7l-3 3z" stroke="currentColor" opacity=".6"/></svg>
+          <div class="rn-field">
             <textarea id="message" name="message" rows="4" required placeholder="Looking for a 3BR around Galle..."></textarea>
           </div>
         </div>
-
-        <button class="pill submit" type="submit">Send</button>
+        <button class="rn-pill rn-submit" type="submit">Send</button>
       </form>
     </section>
   </main>
 
-  <!-- Chat Components -->
-  <button class="chat-fab" id="chatToggle" aria-controls="chatPanel" aria-expanded="false">
-    <span class="icon">💬</span>
-    <span>Chat with RealtyAI</span>
-  </button>
+  <div class="rn-toast" id="toast">Thanks! We’ll get back to you soon.</div>
 
-  <div class="chat-panel" id="chatPanel" role="dialog" aria-label="RealtyAI chat">
-    <div class="chat-head">
-      <strong>RealtyAI</strong>
-      <button class="pill" style="padding:8px 12px" id="closeChat" aria-label="Close chat">Close</button>
-    </div>
-    <div class="chat-body" id="chatBody">
-      <div class="bubble ai">Hi! I’m RealtyAI. How can I help you today?</div>
-    </div>
-    <div class="chat-input">
-      <input id="chatInput" placeholder="Type a message…" aria-label="Message to RealtyAI">
-      <button id="chatSend">Send</button>
-    </div>
-  </div>
-
-  <div class="toast" id="toast">Thanks! We’ll get back to you soon.</div>
-
-  <footer>
+  <footer class="rn-container rn-footer">
     © <span id="year"></span> RealtyNexus. Transparent fees • Bank-approved valuations • Local experts
   </footer>
 
+  <!-- Chat widget -->
+  <script src="/static/app.js?v=2025-09-03-4" defer></script>
   <script>
-  // Year
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  // Contact form (demo -> POST multipart to /api/contact if you wire it)
-  const form = document.getElementById('contactForm');
-  const toast = document.getElementById('toast');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const fd = new FormData(form);
-    if (!fd.get('name') || !fd.get('email') || !fd.get('message')) {
-      alert('Please fill your name, email, and message.');
-      return;
-    }
-
-    try {
-      // Optional: implement this endpoint in Flask if you want to collect leads.
-      // await fetch('/api/contact', { method:'POST', body: fd });
-      form.reset();
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2500);
-    } catch (e) {
-      console.error(e);
-      alert('Network error. Please try again.');
-    }
-  });
-
-  // Chat open/close only (all message sending and rendering is handled by /static/app.js)
-  const toggle = document.getElementById('chatToggle');
-  const panel  = document.getElementById('chatPanel');
-  const close  = document.getElementById('closeChat');
-
-  function openChat(){
-    panel.classList.add('open');
-    toggle.setAttribute('aria-expanded','true');
-    setTimeout(() => document.getElementById('chatInput')?.focus(), 100);
-  }
-  function closeChat(){
-    panel.classList.remove('open');
-    toggle.setAttribute('aria-expanded','false');
-  }
-  toggle.addEventListener('click', () => panel.classList.contains('open') ? closeChat() : openChat());
-  close.addEventListener('click', closeChat);
-
-  // Optional: open chat if URL has ?chat=1
-  if (new URLSearchParams(location.search).get('chat') === '1') openChat();
-</script>
-<script>
-(function () {
-  const toggle = document.getElementById('chatToggle');
-  const panel  = document.getElementById('chatPanel');
-  if (!toggle || !panel) return;
-
-  // ensure aria state
-  toggle.setAttribute('aria-expanded', 'false');
-
-  function setOpen(isOpen){
-    panel.classList.toggle('open', isOpen);
-    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  }
-
-  toggle.addEventListener('click', () => {
-    setOpen(!panel.classList.contains('open'));
-  });
-
-  // optional close button
-  const closeBtn = document.getElementById('closeChat');
-  if (closeBtn) closeBtn.addEventListener('click', () => setOpen(false));
-})();
-</script>
-
-<script src="/static/app.js?v=2025-09-02-3"></script>
-
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const form = document.getElementById('contactForm');
+    const toast = document.getElementById('toast');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      if (!fd.get('name') || !fd.get('email') || !fd.get('message')) {
+        alert('Please fill your name, email, and message.');
+        return;
+      }
+      try {
+        await fetch('/api/contact', { method:'POST', body: fd });
+        form.reset();
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2200);
+      } catch {
+        alert('Network error. Please try again.');
+      }
+    });
+  </script>
 </body>
 </html>
