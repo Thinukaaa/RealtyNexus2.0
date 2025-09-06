@@ -2,146 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>RealtyNexus 2.0</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a2540'/%3E%3Cpath d='M20 62 L50 32 L80 62' fill='none' stroke='%23fff' stroke-width='10' stroke-linecap='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="/static/app.css?v=2025-09-03-4" />
+  <title>RealtyNexus — RealtyAI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/static/app.css?v=2025-09-06-2" />
 </head>
 <body>
-  <header class="rn-topbar">
-    <div class="rn-container rn-nav">
-      <div class="rn-brand">
-        <span class="rn-dot"></span>
-        <span>RealtyNexus 2.0</span>
-      </div>
-      <nav class="rn-links" aria-label="Primary">
-        <a href="#features">Features</a>
-        <a href="#listings">Listings</a>
-        <a href="#contact">Contact</a>
-      </nav>
+  <header class="rn-site-header">
+    <div class="rn-container">
+      <h1>RealtyNexus</h1>
+      <nav><a href="#">Home</a> <a href="#">Listings</a> <a href="#">Contact</a></nav>
     </div>
   </header>
 
   <main class="rn-container">
-    <section class="rn-hero" id="features">
-      <h1 class="rn-headline">Smarter property decisions, faster.</h1>
-      <p class="rn-sub">Local expertise across Greater Colombo, Galle, Kandy — transparent fees & bank-approved valuations.</p>
-      <button class="rn-pill" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">
-        Book a free valuation →
-      </button>
-    </section>
-
-    <section class="rn-sections" id="listings" aria-label="Services and listings">
-      <article class="rn-section">
-        <h3>Residential & Rentals</h3>
-        <p class="rn-muted">End-to-end support from search to keys.</p>
-        <div class="rn-cards">
-          <div class="rn-card">
-            <div>
-              <h4>Colombo 5 — 2BR Apartment</h4>
-              <div class="rn-dim">82 m² · High floor · Pool + Gym</div>
-            </div>
-            <span class="rn-tag">LKR 72M</span>
-          </div>
-        </div>
-      </article>
-      <article class="rn-section">
-        <h3>Investment Advisory</h3>
-        <p class="rn-muted">Off-plan, land banking, and co-investments.</p>
-        <div class="rn-cards">
-          <div class="rn-card">
-            <div>
-              <h4>Galle Fort — Townhouse Shell</h4>
-              <div class="rn-dim">Authentic colonial shell · 3BR · POA</div>
-            </div>
-            <span class="rn-tag">Featured</span>
-          </div>
-        </div>
-      </article>
-      <article class="rn-section">
-        <h3>Legal & Due Diligence</h3>
-        <p class="rn-muted">Title checks, deed verification & valuation partners.</p>
-        <div class="rn-cards">
-          <div class="rn-card">
-            <div>
-              <h4>Kandy — View Plot</h4>
-              <div class="rn-dim">12.5 perch · Utilities nearby</div>
-            </div>
-            <span class="rn-tag">LKR 8.9M</span>
-          </div>
-        </div>
-      </article>
-    </section>
-
-    <section class="rn-contact" id="contact" aria-label="Contact form">
-      <div>
-        <h3>Contact</h3>
-        <p class="rn-details">
-          Colombo, Sri Lanka<br>
-          +94 11 234 5678 · <a href="mailto:hello@realtynexus.com">hello@realtynexus.com</a><br>
-          Hours: Mon–Sat 9:00–18:00
-        </p>
-      </div>
-      <form id="contactForm" novalidate>
-        <div>
-          <label for="name">Your name</label>
-          <div class="rn-field">
-            <input id="name" name="name" autocomplete="name" required placeholder="Jane Perera">
-          </div>
-        </div>
-        <div class="rn-row2">
-          <div>
-            <label for="email">Email</label>
-            <div class="rn-field">
-              <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
-            </div>
-          </div>
-          <div>
-            <label for="phone">Phone (optional)</label>
-            <div class="rn-field">
-              <input id="phone" name="phone" inputmode="tel" placeholder="+94 7X XXX XXXX">
-            </div>
-          </div>
-        </div>
-        <div>
-          <label for="message">Tell us what you need</label>
-          <div class="rn-field">
-            <textarea id="message" name="message" rows="4" required placeholder="Looking for a 3BR around Galle..."></textarea>
-          </div>
-        </div>
-        <button class="rn-pill rn-submit" type="submit">Send</button>
-      </form>
+    <section class="rn-hero">
+      <h2>Your Sri Lankan real-estate co-pilot</h2>
+      <p>Search by city, type, bedrooms, and budget. Try the chat in the corner!</p>
     </section>
   </main>
 
-  <div class="rn-toast" id="toast">Thanks! We’ll get back to you soon.</div>
+  <!-- Chat Toggle Button -->
+  <button id="rn-chat-toggle" aria-controls="rn-chat" aria-expanded="false">
+    💬 Chat with RealtyAI
+  </button>
 
-  <footer class="rn-container rn-footer">
-    © <span id="year"></span> RealtyNexus. Transparent fees • Bank-approved valuations • Local experts
-  </footer>
+  <!-- Chat Panel -->
+  <div id="rn-chat" aria-hidden="true">
+    <div class="rn-chat__header">
+      <div>
+        <strong>RealtyAI</strong>
+        <small>by RealtyNexus</small>
+      </div>
+      <button id="rn-chat-close" aria-label="Close">✕</button>
+    </div>
 
-  <!-- Chat widget -->
-  <script src="/static/app.js?v=2025-09-03-4" defer></script>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    const form = document.getElementById('contactForm');
-    const toast = document.getElementById('toast');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const fd = new FormData(form);
-      if (!fd.get('name') || !fd.get('email') || !fd.get('message')) {
-        alert('Please fill your name, email, and message.');
-        return;
-      }
-      try {
-        await fetch('/api/contact', { method:'POST', body: fd });
-        form.reset();
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 2200);
-      } catch {
-        alert('Network error. Please try again.');
-      }
-    });
-  </script>
+    <div id="rn-chat__messages" class="rn-chat__messages" role="log" aria-live="polite"></div>
+
+    <div class="rn-quick-replies" id="rn-quick-replies"></div>
+
+    <form id="rn-chat__form" class="rn-chat__form" autocomplete="off">
+      <input id="rn-chat__input" type="text" placeholder='Type a message…' maxlength="500" />
+      <button id="rn-chat__send" type="submit" aria-label="Send">➤</button>
+    </form>
+  </div>
+
+  <script src="/static/app.js?v=2025-09-06-2"></script>
 </body>
 </html>

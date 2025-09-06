@@ -1,148 +1,231 @@
-(function () {
-  // --- DOM helpers ---
-  const qs  = (sel, el=document) => el.querySelector(sel);
-  const qsa = (sel, el=document) => [...el.querySelectorAll(sel)];
-  const el  = (tag, cls, text) => {
-    const e = document.createElement(tag);
-    if (cls) e.className = cls;
-    if (text != null) e.textContent = text;
-    return e;
-  };
+(() => {
+  const $ = (sel, el=document) => el.querySelector(sel);
+  const chat = $("#rn-chat");
+  const toggleBtn = $("#rn-chat-toggle");
+  const closeBtn = $("#rn-chat-close");
+  const form = $("#rn-chat__form");
+  const input = $("#rn-chat__input");
+  const log = $("#rn-chat__messages");
+  const chipsWrap = $("#rn-quick-replies");
 
-  // --- Session ---
-  const SESSION_KEY = "realty_session_id";
-  const getSid = () => {
-    let sid = localStorage.getItem(SESSION_KEY);
-    if (!sid) { sid = Math.random().toString(16).slice(2); localStorage.setItem(SESSION_KEY, sid); }
-    return sid;
-  };
+  const api = "/api/chat";
+  const sessionKey = "rn_session_id";
+  let sessionId = localStorage.getItem(sessionKey) || "";
 
-  // --- Widget skeleton ---
-  const launcher = el("button", "rn-chat-launcher", "Chat with RealtyAI");
-  const chat = el("section", "rn-chat");
-  chat.innerHTML = `
-    <header class="rn-chat-header">
-      <div class="rn-chat-title">RealtyAI</div>
-      <button aria-label="Close" class="rn-chat-send" id="rn-close">Close</button>
-    </header>
-    <div class="rn-chat-body" id="rn-body" aria-live="polite"></div>
-    <div class="rn-chat-composer">
-      <input id="rn-input" class="rn-chat-input" placeholder="Ask e.g. apartments in Galle under 80M" />
-      <button id="rn-send" class="rn-chat-send">Send</button>
-    </div>
-  `;
-  document.body.appendChild(launcher);
-  document.body.appendChild(chat);
-
-  const body  = qs("#rn-body", chat);
-  const input = qs("#rn-input", chat);
-  const send  = qs("#rn-send", chat);
-  const close = qs("#rn-close", chat);
-
-  const scrollToBottom = () => {
-    // Smooth but not over-eager
-    body.scrollTo({ top: body.scrollHeight, behavior: "smooth" });
-  };
-
-  const addBubble = (who, text) => {
-    if (!text) return;
-    const b = el("div", `rn-msg ${who === "me" ? "rn-me" : "rn-bot"}`);
-    b.textContent = text;
-    body.appendChild(b);
-    scrollToBottom();
-  };
-
-  const addPreface = (text) => {
-    if (!text) return;
-    const n = el("div", "rn-note", text);
-    body.appendChild(n);
-    scrollToBottom();
-  };
-
-  const formatPrice = (n) => {
-    try { return "LKR " + Number(n).toLocaleString("en-US"); }
-    catch { return "LKR " + n; }
-  };
-
-  const renderCards = (items, kind="listings") => {
-    const wrap = el("div", "rn-grid");
-    for (const it of items || []) {
-      const c = el("div", "rn-card2");
-      const head = el("div", "rn-head");
-      if (it.badge) head.appendChild(el("span", "rn-badge", it.badge));
-      c.appendChild(head);
-
-      c.appendChild(el("div", "rn-title", it.title || (it.type ? it.type.toUpperCase() : "Listing")));
-
-      if (kind === "listings") {
-        const sub = el("div", "rn-sub", it.subtitle || "");
-        c.appendChild(sub);
-        if (it.price_lkr) c.appendChild(el("div", "rn-price", formatPrice(it.price_lkr)));
-        if (it.code) c.appendChild(el("div", "rn-sub", `Code: ${it.code}`));
-      } else if (kind === "investments") {
-        const sub = el("div", "rn-sub", (it.summary || "").trim());
-        c.appendChild(el("div", "rn-sub", it.subtitle || "-"));
-        if (sub.textContent) c.appendChild(sub);
-        if (it.min_investment_lkr) c.appendChild(el("div", "rn-price", "Min " + formatPrice(it.min_investment_lkr)));
-        const metas = [];
-        if (it.yield_pct) metas.push(`Yield ~${it.yield_pct}%`);
-        if (it.roi_pct) metas.push(`ROI ~${it.roi_pct}%`);
-        if (metas.length) c.appendChild(el("div", "rn-sub", metas.join(" · ")));
-      }
-
-      wrap.appendChild(c);
+  function ensureSession() {
+    if (!sessionId) {
+      sessionId = cryptoRandom();
+      localStorage.setItem(sessionKey, sessionId);
     }
-    body.appendChild(wrap);
-    scrollToBottom();
-  };
-
-  // --- Open/close ---
-  const openChat = () => { chat.classList.add("open"); input.focus(); };
-  const closeChat = () => { chat.classList.remove("open"); };
-  launcher.addEventListener("click", openChat);
-  close.addEventListener("click", closeChat);
-
-  // --- Boot greeting ---
-  addBubble("bot", "Hi! I’m RealtyAI. How can I help you today?");
-
-  // --- Send flow ---
-  const sendMessage = async () => {
-    const msg = input.value.trim();
-    if (!msg) return;
-    input.value = "";
-    addBubble("me", msg);
-
+  }
+  function cryptoRandom(){
     try {
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: msg, session_id: getSid() })
+      const arr = new Uint8Array(8); crypto.getRandomValues(arr);
+      return [...arr].map(b=>b.toString(16).padStart(2,"0")).join("");
+    } catch(e){ return Math.random().toString(16).slice(2,18); }
+  }
+
+  function openChat(){
+    chat.setAttribute("aria-hidden","false");
+    toggleBtn.setAttribute("aria-expanded","true");
+    setTimeout(() => input.focus(), 50);
+  }
+  function closeChat(){
+    chat.setAttribute("aria-hidden","true");
+    toggleBtn.setAttribute("aria-expanded","false");
+  }
+  toggleBtn.addEventListener("click",()=>{
+    const open = chat.getAttribute("aria-hidden") === "false";
+    if(open) closeChat(); else openChat();
+  });
+  closeBtn.addEventListener("click", closeChat);
+
+  function scrollToBottom(){
+    log.scrollTop = log.scrollHeight + 999;
+  }
+  function bubble(role, text){
+    const div = document.createElement("div");
+    div.className = `bubble ${role==='user'?'bubble--user':'bubble--bot'}`;
+    div.textContent = text;
+    log.appendChild(div);
+    scrollToBottom();
+  }
+  function money(n){
+    if(n == null) return "";
+    try { return "LKR " + Number(n).toLocaleString(); } catch(e){ return "LKR " + n; }
+  }
+
+  function renderCards(reply){
+    if (reply.preface) {
+      bubble("bot", reply.preface + "\nHere are some options:");
+    }
+    const wrap = document.createElement("div");
+    wrap.className = "bubble bubble--bot";
+    const grid = document.createElement("div");
+    grid.className = "cards";
+
+    (reply.items || []).forEach(it => {
+      const card = document.createElement("div");
+      card.className = "card";
+      if (it.badge){
+        const b = document.createElement("span");
+        b.className = "badge"; b.textContent = it.badge; card.appendChild(b);
+      }
+      const t = document.createElement("div");
+      t.className = "title"; t.textContent = it.title; card.appendChild(t);
+
+      const s = document.createElement("div");
+      s.className = "subtitle"; s.textContent = it.subtitle || ""; card.appendChild(s);
+
+      const meta = document.createElement("div");
+      meta.className = "price";
+      meta.textContent = money(it.price_lkr);
+      card.appendChild(meta);
+
+      if (it.code){
+        const c = document.createElement("div");
+        c.className = "subtitle"; c.textContent = `Code: ${it.code}`;
+        card.appendChild(c);
+      }
+      grid.appendChild(card);
+    });
+    wrap.appendChild(grid);
+    log.appendChild(wrap);
+    scrollToBottom();
+  }
+
+  function renderInvestments(reply){
+    const wrap = document.createElement("div");
+    wrap.className = "bubble bubble--bot";
+    (reply.items || []).forEach(it => {
+      const box = document.createElement("div");
+      box.className = "investment";
+      if (it.badge){
+        const b = document.createElement("span");
+        b.className = "badge"; b.textContent = it.badge; box.appendChild(b);
+      }
+      const t = document.createElement("div");
+      t.className = "title"; t.textContent = it.title || "Investment Plan"; box.appendChild(t);
+
+      const meta = document.createElement("div");
+      meta.className = "subtitle";
+      const bits = [];
+      if (it.subtitle) bits.push(it.subtitle);
+      if (it.yield_pct) bits.push(`Yield ~${it.yield_pct}%`);
+      if (it.roi_pct) bits.push(`ROI ~${it.roi_pct}%`);
+      meta.textContent = bits.join(" · ");
+      box.appendChild(meta);
+
+      const min = document.createElement("div");
+      min.className = "price";
+      if (it.min_investment_lkr) min.textContent = "Min investment " + money(it.min_investment_lkr);
+      box.appendChild(min);
+
+      if (it.summary){
+        const s = document.createElement("div");
+        s.className = "subtitle"; s.textContent = it.summary;
+        box.appendChild(s);
+      }
+      wrap.appendChild(box);
+    });
+    log.appendChild(wrap);
+    scrollToBottom();
+  }
+
+  function setQuickReplies(kind="default"){
+    chipsWrap.innerHTML = "";
+    let chips = [];
+    if (kind === "hello"){
+      chips = [
+        "3BR apartments in Galle under 80M",
+        "Houses in Kandy under 100M",
+        "Show investment plans",
+        "Reset"
+      ];
+    } else if (kind === "refine"){
+      chips = [
+        "Apartments in Colombo 5 under 50M",
+        "Houses in Galle under 80M",
+        "Land in Kandy under 30M",
+        "Contact an agent"
+      ];
+    } else {
+      chips = [
+        "What services do you offer?",
+        "What cities do you cover?",
+        "Show me apartments",
+        "Reset"
+      ];
+    }
+    chips.forEach(txt => {
+      const c = document.createElement("button");
+      c.type = "button"; c.className = "qr-chip"; c.textContent = txt;
+      c.addEventListener("click", ()=>{ input.value = txt; form.dispatchEvent(new Event("submit",{cancelable:true})); });
+      chipsWrap.appendChild(c);
+    });
+  }
+
+  async function sendMessage(msg){
+    ensureSession();
+    bubble("user", msg);
+    input.value = ""; input.focus();
+    setQuickReplies("refine");
+
+    const typing = document.createElement("div");
+    typing.className = "bubble bubble--bot";
+    typing.textContent = "…";
+    log.appendChild(typing);
+    scrollToBottom();
+
+    try{
+      const res = await fetch(api, {
+        method:"POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({ message: msg, session_id: sessionId })
       });
       const data = await res.json();
+      typing.remove();
 
-      // Render reply
-      const r = data.reply || {};
-      if (r.preface) addPreface(r.preface);
-      if (r.type === "cards") {
-        addPreface("Here are some options:");
-        renderCards(r.items || [], "listings");
-      } else if (r.type === "investments") {
-        addPreface("Open investment plans:");
-        renderCards(r.items || [], "investments");
+      const reply = data.reply || {type:"text", content:"Sorry—I had trouble generating a reply just now."};
+      if (reply.type === "text"){
+        bubble("bot", reply.content || "");
+        const txt = (reply.content||"").toLowerCase();
+        if (txt.includes("tell me city")) setQuickReplies("hello");
+        else setQuickReplies("refine");
+      } else if (reply.type === "cards"){
+        renderCards(reply);
+        setQuickReplies("refine");
+      } else if (reply.type === "investments"){
+        renderInvestments(reply);
+        setQuickReplies("refine");
       } else {
-        addBubble("bot", r.content || "…");
+        bubble("bot", "Okay.");
       }
-    } catch (e) {
-      addBubble("bot", "Network error. Please try again.");
-      console.error(e);
+    }catch(err){
+      typing.remove();
+      bubble("bot", "Sorry—I had trouble generating a reply just now.");
     }
-  };
+  }
 
-  send.addEventListener("click", sendMessage);
-  input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      sendMessage();
-    }
+  form.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const msg = input.value.trim();
+    if(!msg) return;
+    sendMessage(msg);
+  });
+
+  // Open chat on first load and greet
+  if(sessionStorage.getItem("rn_greeted")!=="1"){
+    setTimeout(()=>{
+      chat.setAttribute("aria-hidden","false");
+      toggleBtn.setAttribute("aria-expanded","true");
+      bubble("bot", "Hi! I’m RealtyAI. How can I help you today?");
+      setQuickReplies("hello");
+      sessionStorage.setItem("rn_greeted","1");
+    }, 300);
+  }
+
+  window.addEventListener("resize", ()=>{
+    log.scrollTop = log.scrollHeight + 999;
   });
 })();

@@ -1,16 +1,13 @@
-flask==3.0.3
-python-dotenv==1.0.1
-
-httpx==0.27.2
-rank-bm25==0.2.2
-
 # Web app
 Flask>=3.0,<3.2
 python-dotenv>=1.0,<2.0
 
-# OpenAI client
+# OpenAI client (optional)
 openai==1.47.0
 httpx==0.27.2
 
-# Production server (Windows-friendly). Optional for local dev.
+# Production server (optional for local dev)
 waitress>=2.1.2,<3.0
+
+# For tools/qa_smoke.py
+requests>=2.31,<3
