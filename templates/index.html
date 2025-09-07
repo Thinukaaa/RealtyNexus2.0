@@ -2,50 +2,222 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>RealtyNexus — RealtyAI</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="/static/app.css?v=2025-09-06-2" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <title>RealtyNexus — Smarter property decisions</title>
+  <meta name="description" content="RealtyNexus: Sri Lankan real-estate co-pilot for search, investments, and due diligence." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/app.css?v=2025-09-06-1" />
+  <style>
+    /* page scaffold (light touch to keep things tidy if CSS missing) */
+    :root { --pad: 24px; --max: 1120px; }
+    body { margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif; background:#0b1220; color:#dbe5ff; }
+    header { position:sticky; top:0; z-index:2; backdrop-filter:saturate(140%) blur(6px); background:rgba(7,12,22,.65); border-bottom:1px solid rgba(255,255,255,.06); }
+    .row { max-width: var(--max); margin:0 auto; padding:14px var(--pad); display:flex; align-items:center; justify-content:space-between; }
+    .brand { font-weight:700; font-size:1.25rem; letter-spacing:.2px; }
+    nav a { color:#cfe3ff; text-decoration:none; margin-left:18px; opacity:.9 }
+    nav a:hover { opacity:1 }
+    main { max-width: var(--max); margin:0 auto; padding:40px var(--pad) 120px; }
+    .hero h1 { font-size: clamp(28px, 4vw, 44px); margin:.2rem 0 .6rem; }
+    .hero p { color:#a9b9d8; max-width: 60ch; }
+    .cta { margin-top:16px; display:flex; gap:12px; flex-wrap:wrap; }
+    .btn { background:#11b981; color:#041b15; border:0; padding:10px 14px; border-radius:14px; font-weight:600; cursor:pointer; }
+    .btn.alt { background:#0ea5e9; color:#001018; }
+    section { margin-top:48px; }
+    h2 { font-size: clamp(22px, 3vw, 30px); margin:0 0 12px; }
+    .grid { display:grid; gap:14px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+    .tile { background:#0e1a2b; border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:16px; }
+    .tile h3 { margin:0 0 6px; font-size:1.05rem; }
+    .muted { color:#91a4c5; }
+    /* chat positioning safety: leave space for launcher */
+    #rn-chat { bottom: 96px !important; }
+    /* if your global CSS already defines #rn-chat and #rn-launcher, this only adds the gap */
+  </style>
 </head>
+
 <body>
-  <header class="rn-site-header">
-    <div class="rn-container">
-      <h1>RealtyNexus</h1>
-      <nav><a href="#">Home</a> <a href="#">Listings</a> <a href="#">Contact</a></nav>
+  <header>
+    <div class="row">
+      <div class="brand">RealtyNexus</div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#features">Listings</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
   </header>
 
-  <main class="rn-container">
-    <section class="rn-hero">
-      <h2>Your Sri Lankan real-estate co-pilot</h2>
-      <p>Search by city, type, bedrooms, and budget. Try the chat in the corner!</p>
+  <main id="home">
+    <section class="hero">
+      <h1>Your Sri Lankan real-estate co-pilot</h1>
+      <p>Search by city, type, bedrooms, and budget — with transparent fees and bank-approved valuations.
+         Try the chat in the corner!</p>
+      <div class="cta">
+        <a class="btn" href="#contact">Book a free valuation</a>
+        
+      </div>
+    </section>
+
+    <section id="features">
+      <h2>What we do</h2>
+      <div class="grid">
+        <div class="tile">
+          <h3>Residential & Rentals</h3>
+          <div class="muted">End-to-end support from search to keys.</div>
+          <ul class="muted" style="margin:10px 0 0 1rem">
+            <li>Colombo 5 — 2BR Apartment · <strong>LKR 72M</strong></li>
+            <li>Galle — Townhouse Shell · <strong>POA</strong></li>
+          </ul>
+        </div>
+        <div class="tile">
+          <h3>Investment Advisory</h3>
+          <div class="muted">Yield, growth, and co-invest plans.</div>
+          <ul class="muted" style="margin:10px 0 0 1rem">
+            <li>Income Fund A — Yield ~7.5%</li>
+            <li>Growth Pool B — ROI ~12–18%</li>
+          </ul>
+        </div>
+        <div class="tile">
+          <h3>Legal & Due Diligence</h3>
+          <div class="muted">Title checks, deed verification, and partner valuations.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="grid">
+        <div class="tile">
+          <form action="/api/contact" method="post">
+            <label class="muted">Your name</label>
+            <input name="name" required placeholder="Jane Perera" style="width:100%;margin:6px 0 10px;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:#0b1626;color:#dbe5ff">
+            <label class="muted">Email</label>
+            <input type="email" name="email" required placeholder="jane@example.com" style="width:100%;margin:6px 0 10px;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:#0b1626;color:#dbe5ff">
+            <label class="muted">Phone (optional)</label>
+            <input name="phone" placeholder="+94…" style="width:100%;margin:6px 0 10px;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:#0b1626;color:#dbe5ff">
+            <label class="muted">Message</label>
+            <textarea name="message" rows="4" required placeholder="How can we help?" style="width:100%;margin:6px 0 14px;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:#0b1626;color:#dbe5ff"></textarea>
+            <button class="btn" type="submit">Send</button>
+          </form>
+        </div>
+        <div class="tile">
+          <h3>Prefer a quick chat?</h3>
+          <p class="muted">Tap the green bubble to open RealtyAI. Try:</p>
+          <ul class="muted" style="margin-left:1rem">
+            <li>“3BR apartments in Galle under 80M”</li>
+            <li>“Land in Kandy under 30M”</li>
+            <li>“Houses in Colombo 5”</li>
+          </ul>
+        </div>
+      </div>
     </section>
   </main>
 
-  <!-- Chat Toggle Button -->
-  <button id="rn-chat-toggle" aria-controls="rn-chat" aria-expanded="false">
-    💬 Chat with RealtyAI
-  </button>
-
-  <!-- Chat Panel -->
-  <div id="rn-chat" aria-hidden="true">
-    <div class="rn-chat__header">
-      <div>
+  <!-- ======== RealtyAI Chat Widget ======== -->
+<!-- ======== RealtyAI Chat Widget ======== -->
+<div id="rn-chat" class="rn-chat hidden" aria-live="polite" aria-label="RealtyAI chat">
+  <div class="rn-head">
+    <div class="rn-title">
+      <span class="rn-dot-lite"></span>
+      <div class="rn-brand">
         <strong>RealtyAI</strong>
-        <small>by RealtyNexus</small>
+        <div class="rn-sub">by RealtyNexus</div>
       </div>
-      <button id="rn-chat-close" aria-label="Close">✕</button>
     </div>
-
-    <div id="rn-chat__messages" class="rn-chat__messages" role="log" aria-live="polite"></div>
-
-    <div class="rn-quick-replies" id="rn-quick-replies"></div>
-
-    <form id="rn-chat__form" class="rn-chat__form" autocomplete="off">
-      <input id="rn-chat__input" type="text" placeholder='Type a message…' maxlength="500" />
-      <button id="rn-chat__send" type="submit" aria-label="Send">➤</button>
-    </form>
+    <button id="rn-close" class="rn-close" aria-label="Close chat" title="Close">
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
   </div>
 
-  <script src="/static/app.js?v=2025-09-06-2"></script>
+  <!-- Messages -->
+  <div id="rn-messages" class="rn-messages" role="log" aria-live="polite"></div>
+
+  <!-- Context-aware quick replies -->
+  <div id="rn-suggestions" class="rn-chips"></div>
+
+  <!-- Composer -->
+  <div class="rn-inputbar">
+    <input id="rn-input" type="text" placeholder="Type a message…" autocomplete="off" />
+    <button id="rn-send" class="rn-send" aria-label="Send">
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 4l16 8-16 8 4-8-4-8z" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<!-- Launcher -->
+<button id="rn-launcher" class="rn-launcher" aria-expanded="false">
+  <span class="rn-dot"></span>
+  Chat with RealtyAI
+</button>
+<!-- ===================================== -->
+
+</div>
+
+
+<!-- ===================================== -->
+
+
+    <!-- Messages appear here -->
+    <div id="rn-messages" class="rn-messages" role="log"></div>
+
+    <!-- Context-aware quick replies -->
+    <div id="rn-suggestions" class="rn-chips"></div>
+
+    <!-- Composer -->
+    <div class="rn-inputbar">
+      <input id="rn-input" type="text" placeholder="Type a message…" autocomplete="off" />
+      <button id="rn-send" class="rn-send" aria-label="Send">▶</button>
+    </div>
+  </div>
+
+  <!-- Launcher -->
+  <button id="cta-open-chat" class="btn alt" aria-expanded="false" type="button">
+    <span class="rn-dot"></span>
+    Chat with RealtyAI
+  </button>
+ 
+  <!-- ===================================== -->
+
+  <!-- App logic -->
+  <script src="/static/app.js?v=2025-09-06-1"></script>
+
+  <!-- Fallback glue (only runs if your app.js didn't set up the widget) -->
+  <script>
+    (function () {
+      if (window.__RN_WIRED__) return;
+      const $ = (s) => document.querySelector(s);
+      const chat = $('#rn-chat'), launch = $('#rn-launcher'), closeBtn = $('#rn-close');
+      if (!chat || !launch || !closeBtn) return;
+
+      function openChat() {
+        chat.classList.remove('hidden');
+        launch.setAttribute('aria-expanded', 'true');
+        setTimeout(() => { const m = $('#rn-messages'); if (m) m.scrollTop = m.scrollHeight; }, 50);
+      }
+      function closeChat() {
+        chat.classList.add('hidden');
+        launch.setAttribute('aria-expanded', 'false');
+      }
+      launch.addEventListener('click', openChat);
+      closeBtn.addEventListener('click', closeChat);
+      const cta = document.getElementById('cta-open-chat');
+      if (cta) cta.addEventListener('click', openChat);
+
+      window.__RN_WIRED__ = true;
+    })();
+  </script>
+ 
+  <noscript>
+    <div style="position:fixed;bottom:16px;left:16px;background:#ef4444;color:white;padding:8px 12px;border-radius:10px;">
+      Enable JavaScript to use the chat.
+    </div>
+  </noscript>
 </body>
 </html>
